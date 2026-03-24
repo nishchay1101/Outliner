@@ -1,0 +1,35 @@
+# Dependencies — always reinstalled inside Docker
+node_modules
+**/node_modules
+
+# Build artifacts — rebuilt inside Docker
+server/dist
+client/dist
+client/.vite
+
+# Local data — mounted as volume in production
+data/
+*.db
+*.db-shm
+*.db-wal
+
+# Environment files — injected via docker-compose env
+.env
+.env.local
+.env.*.local
+
+# Dev tooling
+.git
+.gitignore
+*.log
+npm-debug.log*
+
+# OS artifacts
+.DS_Store
+Thumbs.db
+
+# Editor configs
+.vscode
+.idea
+*.swp
+*.swo

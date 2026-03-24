@@ -1,0 +1,510 @@
+.lecture-canvas {
+  /* Grid background is already in body::before */
+}
+
+/* Header */
+.lecture-canvas .header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 32px;
+  margin-bottom: 48px;
+}
+
+.lecture-canvas .lecture-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb),0.08);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  padding: 6px 14px;
+  border-radius: 2px;
+  margin-bottom: 20px;
+}
+
+.lecture-canvas .lecture-badge .dot {
+  width: 6px; height: 6px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+.lecture-canvas h1 {
+  font-family: var(--sans);
+  font-size: clamp(28px, 5vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.lecture-canvas h1 span { color: var(--accent); }
+
+.lecture-canvas .header-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: 16px;
+}
+
+.lecture-canvas .meta-chip {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: var(--text-dim);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.lecture-canvas .meta-chip strong { color: var(--text); }
+
+/* Timeline segments */
+.lecture-canvas .segment {
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.lecture-canvas .segment-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.lecture-canvas .time-block {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb),0.08);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  padding: 6px 12px;
+  white-space: nowrap;
+  border-radius: 2px;
+  min-width: 110px;
+  text-align: center;
+}
+
+.lecture-canvas .segment-title {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.lecture-canvas .segment-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+/* Intro segment */
+.lecture-canvas .intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .lecture-canvas .intro-grid { grid-template-columns: 1fr; }
+}
+
+.lecture-canvas .intro-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+}
+
+.lecture-canvas .card-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 12px;
+}
+
+.lecture-canvas .question-bubble {
+  display: inline-block;
+  background: rgba(var(--accent-rgb),0.08);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--accent);
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 12px;
+  width: 100%;
+}
+
+.lecture-canvas .teach-note {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+.lecture-canvas .rule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.lecture-canvas .rule-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.lecture-canvas .rule-arrow {
+  font-family: var(--mono);
+  color: var(--accent3);
+  font-size: 12px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Problem cards */
+.lecture-canvas .problem-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+}
+
+.lecture-canvas .problem-card:hover { 
+  border-color: rgba(var(--accent-rgb),0.4); 
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(var(--shadow-rgb), 0.2), 0 0 0 1px rgba(var(--accent-rgb),0.1);
+}
+
+.lecture-canvas .pc-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
+}
+
+.lecture-canvas .pc-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--muted);
+  min-width: 36px;
+}
+
+.lecture-canvas .pc-title {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 700;
+  flex: 1;
+}
+
+.lecture-canvas .pc-time {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  background: rgba(var(--overlay-white-rgb),0.04);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+.lecture-canvas .pc-link {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  text-decoration: none;
+  background: rgba(var(--accent-rgb),0.07);
+  border: 1px solid rgba(var(--accent-rgb),0.2);
+  padding: 3px 8px;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.lecture-canvas .pc-link:hover { background: rgba(var(--accent-rgb),0.15); }
+
+.lecture-canvas .pc-body {
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+@media (max-width: 640px) {
+  .lecture-canvas .pc-body { grid-template-columns: 1fr; }
+}
+
+.lecture-canvas .pc-section { display: flex; flex-direction: column; gap: 8px; }
+
+.lecture-canvas .pc-section-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.lecture-canvas .step-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  transition: transform 0.2s ease, background 0.2s ease;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.lecture-canvas .step-row:hover {
+  background: rgba(var(--overlay-white-rgb),0.03);
+  transform: translateX(4px);
+}
+
+.lecture-canvas .step-num {
+  font-family: var(--mono);
+  font-size: 10px;
+  color: var(--accent);
+  background: rgba(var(--accent-rgb),0.1);
+  width: 20px;
+  height: 20px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.lecture-canvas .step-text {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.lecture-canvas .step-text strong { color: var(--text); font-weight: 500; }
+.lecture-canvas .step-text code {
+  font-family: var(--mono);
+  font-size: 11px;
+  background: rgba(var(--overlay-white-rgb),0.06);
+  padding: 1px 5px;
+  border-radius: 2px;
+  color: var(--accent3);
+}
+
+.lecture-canvas .insight-box {
+  background: rgba(var(--accent3-rgb),0.05);
+  border: 1px solid rgba(var(--accent3-rgb),0.15);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--accent3);
+  line-height: 1.6;
+  margin-top: 4px;
+  font-style: italic;
+  transition: background 0.2s;
+}
+
+.lecture-canvas .insight-box:hover {
+  background: rgba(var(--accent3-rgb),0.1);
+}
+
+.lecture-canvas .warn-box {
+  background: rgba(var(--accent2-rgb),0.05);
+  border: 1px solid rgba(var(--accent2-rgb),0.15);
+  border-radius: 4px;
+  padding: 12px 14px;
+  font-size: 12px;
+  color: var(--accent2);
+  line-height: 1.6;
+  margin-top: 4px;
+  transition: background 0.2s;
+}
+
+.lecture-canvas .warn-box:hover {
+  background: rgba(var(--accent2-rgb),0.1);
+}
+
+/* Wide card variant for bigger problems */
+.lecture-canvas .pc-body-wide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lecture-canvas .pc-body-wide .cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .lecture-canvas .pc-body-wide .cols { grid-template-columns: 1fr; }
+}
+
+/* Complexity chips */
+.lecture-canvas .complexity-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.lecture-canvas .cx-chip {
+  font-family: var(--mono);
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.lecture-canvas .cx-chip:hover {
+  transform: translateY(-1px);
+}
+
+.lecture-canvas .cx-chip.time { background: rgba(var(--accent3-rgb),0.08); border: 1px solid rgba(var(--accent3-rgb),0.2); color: var(--accent3); }
+.lecture-canvas .cx-chip.time:hover { border-color: rgba(var(--accent3-rgb),0.4); }
+
+.lecture-canvas .cx-chip.space { background: rgba(var(--accent-rgb),0.08); border: 1px solid rgba(var(--accent-rgb),0.2); color: var(--accent); }
+.lecture-canvas .cx-chip.space:hover { border-color: rgba(var(--accent-rgb),0.4); }
+
+.lecture-canvas .cx-chip.bad { background: rgba(var(--accent2-rgb),0.08); border: 1px solid rgba(var(--accent2-rgb),0.2); color: var(--accent2); }
+
+/* Tip card */
+.lecture-canvas .tip-card {
+  background: rgba(var(--accent-rgb),0.04);
+  border: 1px solid rgba(var(--accent-rgb),0.15);
+  border-radius: 4px;
+  padding: 16px 18px;
+  margin: 0 0 20px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.lecture-canvas .tip-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(var(--accent-rgb),0.05);
+}
+
+.lecture-canvas .tip-card .tip-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.lecture-canvas .tip-card p {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+
+/* Check list */
+.lecture-canvas .check-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+
+.lecture-canvas .check-list li {
+  display: flex;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.5;
+  align-items: flex-start;
+  transition: color 0.15s ease;
+}
+
+.lecture-canvas .check-list li:hover {
+  color: var(--text);
+}
+
+.lecture-canvas .check-list li::before {
+  content: '✓';
+  color: var(--accent3);
+  font-family: var(--mono);
+  font-size: 11px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* progress timeline */
+.lecture-canvas .timeline-bar {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin-bottom: 48px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.lecture-canvas .tl-seg {
+  flex: 1;
+  padding: 12px 10px;
+  text-align: center;
+  border-right: 1px solid var(--border);
+  cursor: default;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.lecture-canvas .tl-seg:last-child { border-right: none; }
+
+.lecture-canvas .tl-seg:hover { background: rgba(var(--overlay-white-rgb),0.03); transform: scale(1.02); z-index: 10; border-radius: 4px; }
+
+.lecture-canvas .tl-seg .tl-time {
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.lecture-canvas .tl-seg .tl-name {
+  font-family: var(--sans);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-dim);
+  display: block;
+}
+
+.lecture-canvas .tl-seg.active { background: rgba(var(--accent-rgb),0.06); }
+.lecture-canvas .tl-seg.active .tl-time { color: var(--accent); }
+.lecture-canvas .tl-seg.active .tl-name { color: var(--accent); }
+
+/* Buttons & Inputs (inherit but style for edit mode) */
+.lecture-canvas .btn {
+  transition: transform 0.1s ease, background 0.2s;
+}
+.lecture-canvas .btn:active {
+  transform: scale(0.96);
+}
+
+/* Fade up animation for newly mounted blocks */
+.fade-up {
+  animation: fadeUp 0.4s ease both;
+}
+
+/* Hovering editing buttons */
+.lecture-canvas-edit-icons {
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.fade-up:hover .lecture-canvas-edit-icons {
+  opacity: 1;
+}

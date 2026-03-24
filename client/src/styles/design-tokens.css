@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
+
+:root {
+  --bg-rgb: 10, 10, 15;
+  --surface-rgb: 18, 18, 26;
+  --text-rgb: 232, 232, 240;
+  --accent-rgb: 244, 197, 66;
+  --accent2-rgb: 224, 92, 92;
+  --accent3-rgb: 92, 244, 180;
+  --shadow-rgb: 0, 0, 0;
+  --overlay-white-rgb: 255, 255, 255;
+  --bg: #0a0a0f;
+  --surface: #12121a;
+  --border: #1e1e2e;
+  --accent: #f4c542;
+  --accent2: #e05c5c;
+  --accent3: #5cf4b4;
+  --muted: #4a4a6a;
+  --text: #e8e8f0;
+  --text-dim: #8080a0;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Syne', sans-serif;
+  --body: 'Inter', sans-serif;
+}
+
+
+[data-theme='light'] {
+  --bg: #f9f9fa; 
+  --surface: #ffffff;
+  --border: #e0e0ea;
+  
+  --accent: #d49800;
+  --accent-rgb: 212, 152, 0;
+
+  --accent2: #c44040;
+  --accent2-rgb: 196, 64, 64;
+
+  --accent3: #18ab6d;
+  --accent3-rgb: 24, 171, 109;
+
+  --muted: #a0a0b8;
+  
+  --text: #1a1a24;
+  --text-rgb: 26, 26, 36;
+  --text-dim: #606080;
+  
+  --shadow-rgb: 0, 0, 0;
+  --overlay-white-rgb: 0, 0, 0; /* in light mode, highlighting with white does nothing, we use black overlay instead */
+}

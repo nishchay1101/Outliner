@@ -1,0 +1,53 @@
+version: "3.9"
+
+services:
+
+  # ── Backend: Express + TypeScript API ────────────────────────────────────────
+  server:
+    build:
+      context: .                        # build context is project root
+      dockerfile: server/Dockerfile
+    container_name: doctopage-server
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - DB_PATH=/app/data/pages.db
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}   # read from .env file
+    volumes:
+      - doctopage_data:/app/data        # persist SQLite DB + pages.json across restarts
+    ports:
+      - "3001:3001"                     # also exposed directly for dev/debugging
+    networks:
+      - doctopage_net
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+
+  # ── Frontend: React (Vite build) served by nginx ──────────────────────────────
+  client:
+    build:
+      context: .
+      dockerfile: client/Dockerfile
+    container_name: doctopage-client
+    restart: unless-stopped
+    ports:
+      - "80:80"                         # access the app at http://localhost
+    depends_on:
+      server:
+        condition: service_healthy
+    networks:
+      - doctopage_net
+
+# ── Named volume for persistent data ──────────────────────────────────────────
+volumes:
+  doctopage_data:
+    name: doctopage_data
+
+# ── Internal network ──────────────────────────────────────────────────────────
+networks:
+  doctopage_net:
+    driver: bridge
