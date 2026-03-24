@@ -60,7 +60,7 @@ const blocks = [
 
   // SEGMENT 0 — RECAP
   raw(`
-  <div class="segment">
+  <div class="segment" id="recap">
     <div class="segment-header">
       <div class="time-block blue">⏱ 0 – 5 min</div>
       <div class="segment-title">Recap — Two Pointer vs Sliding Window</div>
@@ -100,7 +100,7 @@ const blocks = [
 
   // SEGMENT 1 — FIXED SIZE
   raw(`
-  <div class="segment">
+  <div class="segment" id="fixed-window">
     <div class="segment-header">
       <div class="time-block blue">⏱ 5 – 35 min</div>
       <div class="segment-title">Sliding Window — Fixed Size</div>
@@ -231,7 +231,7 @@ const blocks = [
 
   // SEGMENT 2 — VARIABLE SIZE
   raw(`
-  <div class="segment">
+  <div class="segment" id="variable-window">
     <div class="segment-header">
       <div class="time-block green">⏱ 35 – 85 min</div>
       <div class="segment-title">Sliding Window — Variable Size</div>
@@ -439,7 +439,7 @@ const blocks = [
 
   // SEGMENT 3 — ADVANCED
   raw(`
-  <div class="segment">
+  <div class="segment" id="advanced">
     <div class="segment-header">
       <div class="time-block purple">⏱ 85 – 110 min</div>
       <div class="segment-title">Advanced Sliding Window</div>
@@ -564,7 +564,7 @@ const blocks = [
 
   // SEGMENT 4 — WRAP-UP
   raw(`
-  <div class="segment">
+  <div class="segment" id="wrap-up">
     <div class="segment-header">
       <div class="time-block blue">⏱ 110 – 120 min</div>
       <div class="segment-title">Final Wrap-Up</div>
