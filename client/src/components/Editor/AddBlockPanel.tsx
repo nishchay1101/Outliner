@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { BlockType, Block } from '../../../../shared/types';
 import { usePageStore } from '../../store/pageStore';
 import { updatePage } from '../../api/client';
+import './AddBlockPanel.css';
 
 interface Props { onClose: () => void; }
 
@@ -49,24 +50,22 @@ export function AddBlockPanel({ onClose }: Props) {
   };
 
   return (
-    <div style={{ width: '280px', minWidth: '280px', borderLeft: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', flexDirection: 'column', height: '100%', overflowY: 'auto' }}>
-      <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase' }}>Add Block</span>
-        <button className="btn btn-ghost" style={{ padding: '0.2rem 0.45rem', fontSize: '0.7rem' }} onClick={onClose}>✕</button>
+    <div className="add-block-panel">
+      <div className="add-block-header">
+        <span className="add-block-title">Add Block</span>
+        <button className="btn btn-ghost add-block-close-btn" onClick={onClose}>✕</button>
       </div>
-      <div style={{ padding: '0.75rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+      <div className="add-block-list">
         {BLOCK_TYPES.map((bt) => (
           <button
             key={bt.type}
             onClick={() => handleAdd(bt)}
-            style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', padding: '0.75rem', background: 'transparent', border: '1px solid var(--border)', borderRadius: '2px', cursor: 'pointer', textAlign: 'left', transition: 'all 0.15s ease', color: 'var(--text)' }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'rgba(244,197,66,0.06)'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--accent)'; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = 'transparent'; (e.currentTarget as HTMLButtonElement).style.borderColor = 'var(--border)'; }}
+            className="add-block-item-btn"
           >
-            <span style={{ fontSize: '1.25rem' }}>{bt.icon}</span>
+            <span className="add-block-item-icon">{bt.icon}</span>
             <div>
-              <div style={{ fontFamily: 'var(--sans)', fontWeight: 600, fontSize: '0.85rem' }}>{bt.label}</div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text-dim)' }}>{bt.description}</div>
+              <div className="add-block-item-label">{bt.label}</div>
+              <div className="add-block-item-desc">{bt.description}</div>
             </div>
           </button>
         ))}

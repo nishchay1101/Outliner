@@ -1,0 +1,65 @@
+.exercise-container-card {
+  padding: 1.5rem;
+}
+
+.exercise-title {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--accent2);
+  margin-bottom: 0.75rem;
+}
+
+.exercise-item-row {
+  display: flex;
+  gap: 0.75rem;
+  align-items: flex-start;
+  padding: 0.4rem 0;
+}
+
+.exercise-item-badge {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 2px;
+  background: rgba(224,92,92,0.15);
+  color: var(--accent2);
+  border: 1px solid rgba(224,92,92,0.3);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.exercise-item-text {
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.exercise-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.exercise-edit-title {
+  width: 100%;
+}
+
+.exercise-edit-item-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.exercise-edit-badge-input {
+  width: 80px;
+}
+
+.exercise-edit-text-input {
+  flex: 1;
+}
+
+.exercise-edit-delete-btn {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.65rem;
+}

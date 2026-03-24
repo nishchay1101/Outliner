@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { usePageStore } from '../../store/pageStore';
 import { usePageEditor } from '../../hooks/usePageEditor';
 import { exportPage, updatePage } from '../../api/client';
+import './Toolbar.css';
 
 interface Props {
   onToggleAddBlock: () => void;
@@ -50,18 +51,9 @@ export function Toolbar({ onToggleAddBlock, onToggleExtend, showSidebar, onToggl
     }
   };
 
-  const toolbarStyle: React.CSSProperties = {
-    position: 'sticky', top: 0, zIndex: 100,
-    background: 'rgba(10,10,15,0.92)',
-    backdropFilter: 'blur(12px)',
-    borderBottom: '1px solid var(--border)',
-    padding: '0.6rem 1.25rem',
-    display: 'flex', alignItems: 'center', gap: '0.75rem',
-  };
-
   return (
-    <div style={toolbarStyle}>
-      <button className="btn btn-ghost" style={{ marginRight: '0.25rem' }} onClick={onToggleSidebar}>
+    <div className="toolbar-container">
+      <button className="btn btn-ghost toolbar-sidebar-toggle-btn" onClick={onToggleSidebar}>
         {showSidebar ? '◀' : '▶'} Pages
       </button>
 
@@ -69,33 +61,33 @@ export function Toolbar({ onToggleAddBlock, onToggleExtend, showSidebar, onToggl
         ↩ Home
       </button>
 
-      <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+      <div className="toolbar-title-wrapper">
         {editingTitle ? (
           <input
             autoFocus
             defaultValue={activePage?.title}
-            style={{ fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '1rem', width: '320px' }}
+            className="toolbar-title-input"
             onBlur={(e) => handleTitleSave(e.target.value)}
             onKeyDown={(e) => { if (e.key === 'Enter') handleTitleSave((e.target as HTMLInputElement).value); }}
           />
         ) : (
           <span
             onClick={() => setEditingTitle(true)}
-            style={{ fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '1rem', cursor: 'text', color: 'var(--text)', padding: '0.2rem 0.4rem', borderRadius: '2px' }}
+            className="toolbar-title-display"
           >
             {activePage?.title || 'Untitled'}
           </span>
         )}
       </div>
 
-      <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
+      <div className="toolbar-actions">
         <button className={`btn ${editMode ? 'btn-primary' : 'btn-ghost'}`} onClick={toggleEditMode}>
           {editMode ? '✏️ Editing' : '✏️ Edit'}
         </button>
         {editMode && (
           <>
             <button className="btn btn-ghost" onClick={onToggleAddBlock}>+ Block</button>
-            <button className="btn btn-ghost" style={{ color: 'var(--accent3)' }} onClick={onToggleExtend}>✨ Extend</button>
+            <button className="btn btn-ghost toolbar-extend-btn" onClick={onToggleExtend}>✨ Extend</button>
           </>
         )}
         <button className="btn btn-ghost" onClick={handleExport}>⬇ Export</button>

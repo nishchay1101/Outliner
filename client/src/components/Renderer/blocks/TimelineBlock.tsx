@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TimelineData, TimelineSegment } from '../../../../../shared/types';
+import './TimelineBlock.css';
 
 interface Props { data: TimelineData; editMode: boolean; onUpdate: (d: TimelineData) => void; }
 
@@ -44,8 +45,7 @@ export function TimelineBlock({ data, editMode, onUpdate }: Props) {
               key={i} 
               href={`#${slug}`}
               onClick={(e) => handleClick(e, seg.label, seg.time)}
-              className={`tl-seg ${seg.active ? 'active' : ''}`} 
-              style={{ cursor: 'pointer', textDecoration: 'none', color: 'inherit' }}
+              className={`tl-seg ${seg.active ? 'active' : ''} timeline-anchor-reset`} 
             >
               <span className="tl-time">{seg.time}</span>
               <span className="tl-name">{seg.label}</span>
@@ -62,15 +62,30 @@ export function TimelineBlock({ data, editMode, onUpdate }: Props) {
   };
 
   return (
-    <div className="card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div className="card timeline-edit-card">
       {d.segments?.map((seg, i) => (
-        <div key={i} style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-          <input value={seg.time} onChange={(e) => updateSeg(i, 'time', e.target.value)} placeholder="0–5 min" style={{ width: '90px' }} />
-          <input value={seg.label} onChange={(e) => updateSeg(i, 'label', e.target.value)} placeholder="Label" style={{ flex: 1 }} />
-          <label style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text-dim)', display: 'flex', gap: '0.3rem', alignItems: 'center' }}>
+        <div key={i} className="timeline-edit-row">
+          <input 
+            value={seg.time} 
+            onChange={(e) => updateSeg(i, 'time', e.target.value)} 
+            placeholder="0–5 min" 
+            className="timeline-edit-time-input" 
+          />
+          <input 
+            value={seg.label} 
+            onChange={(e) => updateSeg(i, 'label', e.target.value)} 
+            placeholder="Label" 
+            className="timeline-edit-label-input" 
+          />
+          <label className="timeline-edit-checkbox-label">
             <input type="checkbox" checked={seg.active} onChange={(e) => updateSeg(i, 'active', e.target.checked)} /> Active
           </label>
-          <button className="btn btn-danger" style={{ padding: '0.2rem 0.4rem', fontSize: '0.65rem' }} onClick={() => setD({ ...d, segments: d.segments.filter((_, idx) => idx !== i) })}>✕</button>
+          <button 
+            className="btn btn-danger timeline-edit-delete-btn" 
+            onClick={() => setD({ ...d, segments: d.segments.filter((_, idx) => idx !== i) })}
+          >
+            ✕
+          </button>
         </div>
       ))}
       <button className="btn btn-ghost" onClick={() => setD({ ...d, segments: [...(d.segments || []), { time: '', label: '', active: false }] })}>+ Add segment</button>

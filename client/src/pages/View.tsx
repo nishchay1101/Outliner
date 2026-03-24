@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { usePageStore } from '../store/pageStore';
 import { getPage } from '../api/client';
 import { PageRenderer } from '../components/Renderer/PageRenderer';
+import './View.css';
 
 export default function View() {
   const { pageId } = useParams<{ pageId: string }>();
@@ -15,12 +16,12 @@ export default function View() {
     getPage(pageId).then((r) => setActivePage(r.data)).finally(() => setLoading(false));
   }, [pageId, setActivePage]);
 
-  if (loading) return <div style={{ padding: '2rem', fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--text-dim)' }}>Loading...</div>;
+  if (loading) return <div className="view-loading-text">Loading...</div>;
 
   return (
-    <div style={{ minHeight: '100vh', padding: '2rem' }}>
-      <div style={{ maxWidth: '860px', margin: '0 auto' }}>
-        <button className="btn btn-ghost" onClick={() => navigate(-1)} style={{ marginBottom: '1.5rem' }}>← Back</button>
+    <div className="view-layout">
+      <div className="view-canvas-max-width">
+        <button className="btn btn-ghost view-back-btn" onClick={() => navigate(-1)}>← Back</button>
         <PageRenderer />
       </div>
     </div>

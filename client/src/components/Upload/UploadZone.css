@@ -1,0 +1,81 @@
+.upload-container {
+  max-width: 520px;
+  width: 100%;
+}
+
+.upload-zone {
+  border-radius: 4px;
+  padding: 3rem 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 2px dashed var(--border);
+  background: transparent;
+}
+
+.upload-zone.drag-over {
+  border-color: var(--accent);
+  background: rgba(244,197,66,0.04);
+}
+
+.upload-input-hidden {
+  display: none;
+}
+
+.upload-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.upload-file-name {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.upload-file-meta {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.upload-progress-container {
+  padding: 1rem 0;
+}
+
+.upload-progress-stage {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.upload-progress-bar-bg {
+  background: var(--border);
+  border-radius: 2px;
+  height: 4px;
+  overflow: hidden;
+}
+
+.upload-progress-bar-fill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 0.4s ease;
+  border-radius: 2px;
+}
+
+.upload-error-msg {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--accent2);
+  margin-top: 0.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--accent2);
+  border-radius: 2px;
+}
+
+.upload-submit-btn {
+  margin-top: 1rem;
+  width: 100%;
+}

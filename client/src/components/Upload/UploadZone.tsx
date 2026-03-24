@@ -1,5 +1,6 @@
 import { useRef, useState, DragEvent } from 'react';
 import { useUpload } from '../../hooks/useUpload';
+import './UploadZone.css';
 
 export function UploadZone() {
   const { upload, uploading, stage, progress, error } = useUpload();
@@ -23,20 +24,10 @@ export function UploadZone() {
     if (selectedFile) upload(selectedFile);
   };
 
-  const zoneStyle: React.CSSProperties = {
-    border: `2px dashed ${dragOver ? 'var(--accent)' : 'var(--border)'}`,
-    borderRadius: '4px',
-    padding: '3rem 2rem',
-    textAlign: 'center',
-    cursor: 'pointer',
-    transition: 'all 0.2s ease',
-    background: dragOver ? 'rgba(244,197,66,0.04)' : 'transparent',
-  };
-
   return (
-    <div style={{ maxWidth: '520px', width: '100%' }}>
+    <div className="upload-container">
       <div
-        style={zoneStyle}
+        className={`upload-zone ${dragOver ? 'drag-over' : ''}`}
         onClick={() => !uploading && inputRef.current?.click()}
         onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
         onDragLeave={() => setDragOver(false)}
@@ -46,36 +37,31 @@ export function UploadZone() {
           ref={inputRef}
           type="file"
           accept=".docx"
-          style={{ display: 'none' }}
+          className="upload-input-hidden"
           onChange={handleFileChange}
         />
 
         {!uploading ? (
           <>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>📄</div>
-            <p style={{ fontFamily: 'var(--sans)', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.5rem' }}>
+            <div className="upload-icon">📄</div>
+            <p className="upload-file-name">
               {selectedFile ? selectedFile.name : 'Drop your .docx file here'}
             </p>
-            <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)' }}>
+            <p className="upload-file-meta">
               {selectedFile
                 ? `${(selectedFile.size / 1024).toFixed(1)} KB — click Upload to convert`
                 : 'or click to browse — .docx files only'}
             </p>
           </>
         ) : (
-          <div style={{ padding: '1rem 0' }}>
-            <p style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--accent)', marginBottom: '1rem' }}>
+          <div className="upload-progress-container">
+            <p className="upload-progress-stage">
               {stage}
             </p>
-            <div style={{ background: 'var(--border)', borderRadius: '2px', height: '4px', overflow: 'hidden' }}>
+            <div className="upload-progress-bar-bg">
               <div
-                style={{
-                  height: '100%',
-                  background: 'var(--accent)',
-                  width: `${progress}%`,
-                  transition: 'width 0.4s ease',
-                  borderRadius: '2px',
-                }}
+                className="upload-progress-bar-fill"
+                style={{ width: `${progress}%` }}
               />
             </div>
           </div>
@@ -83,13 +69,13 @@ export function UploadZone() {
       </div>
 
       {error && (
-        <p style={{ fontFamily: 'var(--mono)', fontSize: '0.75rem', color: 'var(--accent2)', marginTop: '0.75rem', padding: '0.5rem 0.75rem', border: '1px solid var(--accent2)', borderRadius: '2px' }}>
+        <p className="upload-error-msg">
           ✗ {error}
         </p>
       )}
 
       {selectedFile && !uploading && (
-        <button className="btn btn-primary" style={{ marginTop: '1rem', width: '100%' }} onClick={handleUpload}>
+        <button className="btn btn-primary upload-submit-btn" onClick={handleUpload}>
           Convert with Claude →
         </button>
       )}

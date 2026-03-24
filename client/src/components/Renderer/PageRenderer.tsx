@@ -13,6 +13,7 @@ import { ExerciseBlock } from './blocks/ExerciseBlock';
 import { TimelineBlock } from './blocks/TimelineBlock';
 import { ProblemBlock } from './blocks/ProblemBlock';
 import { DividerBlock } from './blocks/DividerBlock';
+import './PageRenderer.css';
 
 function renderBlock(block: Block, editMode: boolean, isEditing: boolean, onUpdate: (data: Record<string, any>) => void) {
   const props = { data: block.data, editMode: isEditing, onUpdate };
@@ -27,7 +28,7 @@ function renderBlock(block: Block, editMode: boolean, isEditing: boolean, onUpda
     case 'timeline': return <TimelineBlock {...props} data={block.data as any} />;
     case 'problem': return <ProblemBlock {...props} data={block.data as any} />;
     case 'divider': return <DividerBlock {...props} data={block.data as any} />;
-    default: return <div style={{ color: 'var(--text-dim)', fontFamily: 'var(--mono)', fontSize: '0.75rem' }}>Unknown block type: {block.type}</div>;
+    default: return <div className="unknown-block-type">Unknown block type: {block.type}</div>;
   }
 }
 
@@ -85,18 +86,23 @@ export function PageRenderer() {
                 return (
                   <Draggable key={block.id} draggableId={block.id} index={index} isDragDisabled={!editMode}>
                     {(drag) => (
-                      <div ref={drag.innerRef} {...drag.draggableProps} className="fade-up" style={{ ...drag.draggableProps.style, marginBottom: '1.25rem', position: 'relative' }}>
+                      <div 
+                        ref={drag.innerRef} 
+                        {...drag.draggableProps} 
+                        className="fade-up draggable-block-wrapper" 
+                        style={{ ...drag.draggableProps.style }}
+                      >
                         {editMode && (
-                          <div style={{ position: 'absolute', top: '0.5rem', right: '0.5rem', zIndex: 10, display: 'flex', gap: '0.35rem' }} className="lecture-canvas-edit-icons">
+                          <div className="block-edit-toolbar lecture-canvas-edit-icons">
                             {!isEditing && (
                               <>
-                                <span {...drag.dragHandleProps} style={{ cursor: 'grab', padding: '0.2rem 0.4rem', fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text-dim)', background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: '2px' }}>⣿</span>
-                                <button className="btn btn-ghost" style={{ padding: '0.2rem 0.45rem', fontSize: '0.65rem' }} onClick={() => setEditingBlockId(block.id)}>✏️</button>
-                                <button className="btn btn-danger" style={{ padding: '0.2rem 0.45rem', fontSize: '0.65rem' }} onClick={() => handleDelete(block.id)}>🗑</button>
+                                <span {...drag.dragHandleProps} className="drag-handle">⣿</span>
+                                <button className="btn btn-ghost edit-block-btn" onClick={() => setEditingBlockId(block.id)}>✏️</button>
+                                <button className="btn btn-danger edit-block-btn" onClick={() => handleDelete(block.id)}>🗑</button>
                               </>
                             )}
                             {isEditing && (
-                              <button className="btn btn-ghost" style={{ padding: '0.2rem 0.45rem', fontSize: '0.65rem' }} onClick={() => setEditingBlockId(null)}>✕ Cancel</button>
+                              <button className="btn btn-ghost edit-block-btn" onClick={() => setEditingBlockId(null)}>✕ Cancel</button>
                             )}
                           </div>
                         )}

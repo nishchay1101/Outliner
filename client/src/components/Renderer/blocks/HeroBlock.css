@@ -1,0 +1,44 @@
+.hero-header-no-border {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.hero-title-margin {
+  margin-bottom: 0.75rem;
+}
+
+.hero-subtitle {
+  color: var(--text-dim);
+  font-size: 1rem;
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+
+.hero-badges-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-meta-margin {
+  margin-top: 0.5rem;
+}
+
+.hero-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.hero-edit-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.hero-edit-input {
+  width: 100%;
+}

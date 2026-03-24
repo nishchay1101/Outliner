@@ -1,0 +1,40 @@
+.timeline-anchor-reset {
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+}
+
+.timeline-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.timeline-edit-row {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.timeline-edit-time-input {
+  width: 90px;
+}
+
+.timeline-edit-label-input {
+  flex: 1;
+}
+
+.timeline-edit-checkbox-label {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  display: flex;
+  gap: 0.3rem;
+  align-items: center;
+}
+
+.timeline-edit-delete-btn {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.65rem;
+}
