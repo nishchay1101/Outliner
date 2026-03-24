@@ -20,7 +20,7 @@
   font-size: 0.75rem;
   text-align: left;
   padding: 0.5rem 0.75rem;
-  background: rgba(244,197,66,0.08);
+  background: rgba(var(--accent-rgb), 0.08);
   color: var(--accent);
   border-bottom: 1px solid var(--border);
 }
@@ -28,7 +28,7 @@
 .table-td-styled {
   padding: 0.5rem 0.75rem;
   color: var(--text);
-  border-bottom: 1px solid rgba(30,30,46,0.5);
+  border-bottom: 1px solid var(--border);
   font-size: 0.875rem;
 }
 

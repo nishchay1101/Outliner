@@ -51,7 +51,7 @@
 }
 
 .page-list-item.selected {
-  background: rgba(244,197,66,0.06);
+  background: rgba(var(--accent-rgb), 0.06);
   border-left-color: var(--accent);
 }
 

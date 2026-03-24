@@ -1,5 +1,5 @@
 .code-block-container {
-  background: #0d0d16;
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 4px;
   padding: 1.25rem;
@@ -23,15 +23,19 @@
 }
 
 .code-token-keyword {
-  color: #c792ea;
+  color: var(--code-keyword);
 }
 
 .code-token-comment {
-  color: var(--muted);
+  color: var(--code-comment);
 }
 
 .code-token-var {
-  color: var(--accent3);
+  color: var(--code-var);
+}
+
+.code-token-fn {
+  color: var(--code-fn);
 }
 
 .code-token-normal {

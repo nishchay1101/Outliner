@@ -13,6 +13,7 @@ import { ExerciseBlock } from './blocks/ExerciseBlock';
 import { TimelineBlock } from './blocks/TimelineBlock';
 import { ProblemBlock } from './blocks/ProblemBlock';
 import { DividerBlock } from './blocks/DividerBlock';
+import { TemplateBlock } from './blocks/TemplateBlock';
 import './PageRenderer.css';
 
 function renderBlock(block: Block, editMode: boolean, isEditing: boolean, onUpdate: (data: Record<string, any>) => void) {
@@ -28,6 +29,8 @@ function renderBlock(block: Block, editMode: boolean, isEditing: boolean, onUpda
     case 'timeline': return <TimelineBlock {...props} data={block.data as any} />;
     case 'problem': return <ProblemBlock {...props} data={block.data as any} />;
     case 'divider': return <DividerBlock {...props} data={block.data as any} />;
+    case 'template': return <TemplateBlock {...props} data={block.data as any} />;
+    case 'rawHtml': return <div dangerouslySetInnerHTML={{ __html: (block.data as any).html }} />;
     default: return <div className="unknown-block-type">Unknown block type: {block.type}</div>;
   }
 }

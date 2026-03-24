@@ -22,9 +22,9 @@
   font-size: 0.65rem;
   padding: 0.2rem 0.5rem;
   border-radius: 2px;
-  background: rgba(224,92,92,0.15);
+  background: rgba(var(--accent2-rgb), 0.15);
   color: var(--accent2);
-  border: 1px solid rgba(224,92,92,0.3);
+  border: 1px solid rgba(var(--accent2-rgb), 0.3);
   flex-shrink: 0;
   white-space: nowrap;
 }

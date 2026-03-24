@@ -1,23 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500&display=swap');
 
 :root {
+  /* Dark theme — matches reference HTML exactly */
   --bg-rgb: 10, 10, 15;
   --surface-rgb: 18, 18, 26;
   --text-rgb: 232, 232, 240;
-  --accent-rgb: 244, 197, 66;
-  --accent2-rgb: 224, 92, 92;
-  --accent3-rgb: 92, 244, 180;
+  --accent-rgb: 92, 158, 244;    /* blue  */
+  --accent2-rgb: 224, 92, 92;   /* red   */
+  --accent3-rgb: 92, 244, 180;  /* green */
+  --accent4-rgb: 196, 92, 244;  /* purple*/
   --shadow-rgb: 0, 0, 0;
-  --overlay-white-rgb: 255, 255, 255;
+  --overlay-rgb: 255, 255, 255;
+
   --bg: #0a0a0f;
   --surface: #12121a;
   --border: #1e1e2e;
-  --accent: #f4c542;
-  --accent2: #e05c5c;
-  --accent3: #5cf4b4;
-  --muted: #4a4a6a;
-  --text: #e8e8f0;
-  --text-dim: #8080a0;
+
+  --accent:  #5c9ef4;   /* blue  - primary */
+  --accent2: #e05c5c;   /* red   - warnings */
+  --accent3: #5cf4b4;   /* green - insights / space */
+  --accent4: #c45cf4;   /* purple - template / advanced */
+  --muted:   #4a4a6a;
+  --text:    #e8e8f0;
+  --text-dim:#8080a0;
+
+  /* Syntax highlighting — dark */
+  --code-keyword: #c45cf4;           /* purple */
+  --code-comment: var(--muted);
+  --code-var:     #5cf4b4;           /* green  */
+  --code-fn:      #5c9ef4;           /* blue   */
+
   --mono: 'Space Mono', monospace;
   --sans: 'Syne', sans-serif;
   --body: 'Inter', sans-serif;
@@ -25,25 +37,37 @@
 
 
 [data-theme='light'] {
-  --bg: #f9f9fa; 
+  /* Light theme — warm paper, high contrast */
+  --bg: #f8f6f0;
+  --bg-rgb: 248, 246, 240;
   --surface: #ffffff;
-  --border: #e0e0ea;
-  
-  --accent: #d49800;
-  --accent-rgb: 212, 152, 0;
+  --surface-rgb: 255, 255, 255;
+  --border: #e0dbd0;
 
-  --accent2: #c44040;
-  --accent2-rgb: 196, 64, 64;
+  --accent:  #1d6fce;             /* blue  */
+  --accent-rgb: 29, 111, 206;
 
-  --accent3: #18ab6d;
-  --accent3-rgb: 24, 171, 109;
+  --accent2: #c03030;             /* red   */
+  --accent2-rgb: 192, 48, 48;
 
-  --muted: #a0a0b8;
-  
-  --text: #1a1a24;
-  --text-rgb: 26, 26, 36;
-  --text-dim: #606080;
-  
-  --shadow-rgb: 0, 0, 0;
-  --overlay-white-rgb: 0, 0, 0; /* in light mode, highlighting with white does nothing, we use black overlay instead */
+  --accent3: #1a8c55;             /* green */
+  --accent3-rgb: 26, 140, 85;
+
+  --accent4: #8230b0;             /* purple */
+  --accent4-rgb: 130, 48, 176;
+
+  --muted: #9090a0;
+
+  --text: #18181c;
+  --text-rgb: 24, 24, 28;
+  --text-dim: #50505e;
+
+  /* Syntax highlighting — light */
+  --code-keyword: #7b24b0;
+  --code-comment: #8888a0;
+  --code-var:     #1a7a45;
+  --code-fn:      #1558a8;
+
+  --shadow-rgb: 20, 20, 30;
+  --overlay-rgb: 0, 0, 0;
 }

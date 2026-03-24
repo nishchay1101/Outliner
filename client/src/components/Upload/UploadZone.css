@@ -15,7 +15,7 @@
 
 .upload-zone.drag-over {
   border-color: var(--accent);
-  background: rgba(244,197,66,0.04);
+  background: rgba(var(--accent-rgb), 0.04);
 }
 
 .upload-input-hidden {

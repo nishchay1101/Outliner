@@ -19,13 +19,13 @@
 }
 
 .toast-item-error {
-  background: rgba(224, 92, 92, 0.15);
+  background: rgba(var(--accent2-rgb), 0.15);
   border: 1px solid var(--accent2);
   color: var(--accent2);
 }
 
 .toast-item-success {
-  background: rgba(92, 244, 180, 0.15);
+  background: rgba(var(--accent3-rgb), 0.15);
   border: 1px solid var(--accent3);
   color: var(--accent3);
 }
