@@ -1,0 +1,55 @@
+.table-container-card {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.table-caption-mono {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
+}
+
+.table-full-width {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-th-styled {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: rgba(var(--accent-rgb), 0.08);
+  color: var(--accent);
+  border-bottom: 1px solid var(--border);
+}
+
+.table-td-styled {
+  padding: 0.5rem 0.75rem;
+  color: var(--text);
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+}
+
+.table-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.table-edit-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+}
+
+.table-edit-input {
+  width: 100%;
+}
+
+.table-edit-textarea {
+  width: 100%;
+  min-height: 100px;
+}

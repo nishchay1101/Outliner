@@ -1,0 +1,35 @@
+.unknown-block-type {
+  color: var(--text-dim);
+  font-family: var(--mono);
+  font-size: 0.75rem;
+}
+
+.draggable-block-wrapper {
+  margin-bottom: 1.25rem;
+  position: relative;
+}
+
+.block-edit-toolbar {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  z-index: 10;
+  display: flex;
+  gap: 0.35rem;
+}
+
+.drag-handle {
+  cursor: grab;
+  padding: 0.2rem 0.4rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--text-dim);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+}
+
+.edit-block-btn {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.65rem;
+}

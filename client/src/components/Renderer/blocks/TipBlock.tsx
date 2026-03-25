@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { TipData } from '../../../../../shared/types';
+import './TipBlock.css';
 
 interface Props { data: TipData; editMode: boolean; onUpdate: (d: TipData) => void; }
 
@@ -9,17 +10,26 @@ export function TipBlock({ data, editMode, onUpdate }: Props) {
 
   if (!editMode) {
     return (
-      <div className="card" style={{ padding: '1.25rem', borderLeft: `3px solid ${borderColor}` }}>
-        <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: borderColor, marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{data.label || 'Tip'}</div>
-        <div style={{ lineHeight: 1.7, color: 'var(--text)' }}>{data.content}</div>
+      <div className="card tip-card" style={{ '--tip-border-color': borderColor } as React.CSSProperties}>
+        <div className="tip-label">{data.label || 'Tip'}</div>
+        <div className="tip-content">{data.content}</div>
       </div>
     );
   }
 
   return (
-    <div className="card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-      <input value={d.label} onChange={(e) => setD({ ...d, label: e.target.value })} placeholder="Label (Tip / Note / Warning)" style={{ width: '100%' }} />
-      <textarea value={d.content} onChange={(e) => setD({ ...d, content: e.target.value })} style={{ width: '100%' }} />
+    <div className="card tip-edit-card">
+      <input 
+        value={d.label} 
+        onChange={(e) => setD({ ...d, label: e.target.value })} 
+        placeholder="Label (Tip / Note / Warning)" 
+        className="tip-edit-input" 
+      />
+      <textarea 
+        value={d.content} 
+        onChange={(e) => setD({ ...d, content: e.target.value })} 
+        className="tip-edit-input" 
+      />
       <button className="btn btn-primary" onClick={() => onUpdate(d)}>Save</button>
     </div>
   );

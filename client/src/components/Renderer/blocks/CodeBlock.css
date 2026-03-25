@@ -1,0 +1,61 @@
+.code-block-container {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1.25rem;
+  overflow-x: auto;
+}
+
+.code-block-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  margin-bottom: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.code-line {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  white-space: pre;
+}
+
+.code-token-keyword {
+  color: var(--code-keyword);
+}
+
+.code-token-comment {
+  color: var(--code-comment);
+}
+
+.code-token-var {
+  color: var(--code-var);
+}
+
+.code-token-fn {
+  color: var(--code-fn);
+}
+
+.code-token-normal {
+  color: var(--text);
+}
+
+.code-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.code-edit-input {
+  width: 100%;
+}
+
+.code-edit-textarea {
+  width: 100%;
+  min-height: 160px;
+  font-family: var(--mono);
+  font-size: 0.82rem;
+}

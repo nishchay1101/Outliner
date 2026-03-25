@@ -1,0 +1,49 @@
+.toolbar-container {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(var(--bg-rgb), 0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 0.6rem 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.toolbar-sidebar-toggle-btn {
+  margin-right: 0.25rem;
+}
+
+.toolbar-title-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.toolbar-title-input {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1rem;
+  width: 320px;
+}
+
+.toolbar-title-display {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: text;
+  color: var(--text);
+  padding: 0.2rem 0.4rem;
+  border-radius: 2px;
+}
+
+.toolbar-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.toolbar-extend-btn {
+  color: var(--accent3);
+}

@@ -1,0 +1,20 @@
+.view-loading-text {
+  padding: 2rem;
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--text-dim);
+}
+
+.view-layout {
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+.view-canvas-max-width {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.view-back-btn {
+  margin-bottom: 1.5rem;
+}

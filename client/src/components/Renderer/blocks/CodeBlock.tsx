@@ -1,27 +1,43 @@
 import { useState } from 'react';
 import { CodeData, CodeLine } from '../../../../../shared/types';
+import './CodeBlock.css';
 
 interface Props { data: CodeData; editMode: boolean; onUpdate: (d: CodeData) => void; }
-
-function getColor(type: CodeLine['type']): string {
-  switch (type) {
-    case 'keyword': return '#c792ea';
-    case 'comment': return 'var(--muted)';
-    case 'var': return 'var(--accent3)';
-    default: return 'var(--text)';
-  }
-}
 
 export function CodeBlock({ data, editMode, onUpdate }: Props) {
   const [d, setD] = useState<CodeData>(data);
 
+  const renderLineTokens = (text: string) => {
+    // Basic regex-based tokenization for rendering
+    const tokens: { text: string; type: string }[] = [];
+    const keywords = /^(function|if|else|for|while|return|const|let|var|class|import|export|def|print|pass|break|continue|in|range|max|min|sum|del)\b/;
+    
+    // Simple split-based parser for POC, could be improved with better regex
+    const words = text.split(/(\s+|\(|\)|\,|\=|\.|\:)/);
+    
+    words.forEach(word => {
+      if (!word) return;
+      if (keywords.test(word)) tokens.push({ text: word, type: 'keyword' });
+      else if (word.startsWith('//') || word.startsWith('#')) tokens.push({ text: word, type: 'comment' });
+      else if (word.match(/^[a-zA-Z0-9_]+$/) && words[words.indexOf(word) + 1] === '(') tokens.push({ text: word, type: 'fn' });
+      else if (word.match(/^[a-zA-Z0-9_]+$/) && (words[words.indexOf(word) + 1]?.trim() === '=' || words.indexOf(word) > 0 && words[words.indexOf(word)-1]?.trim() === '=')) tokens.push({ text: word, type: 'var' });
+      else tokens.push({ text: word, type: 'normal' });
+    });
+
+    return tokens.map((t, i) => <span key={i} className={`code-token-${t.type}`}>{t.text}</span>);
+  };
+
   if (!editMode) {
     return (
-      <div style={{ background: '#0d0d16', border: '1px solid var(--border)', borderRadius: '4px', padding: '1.25rem', overflowX: 'auto' }}>
-        {data.title && <div style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.06em' }}>{data.title}</div>}
+      <div className="code-block-container">
+        {data.title && <div className="code-block-title">{data.title}</div>}
         {(data.lines || []).map((line, i) => (
-          <div key={i} style={{ fontFamily: 'var(--mono)', fontSize: '0.82rem', lineHeight: '1.7', paddingLeft: `${(line.indent || 0) * 1.5}rem`, whiteSpace: 'pre' }}>
-            <span style={{ color: getColor(line.type) }}>{line.text}</span>
+          <div 
+            key={i} 
+            className="code-line" 
+            style={{ paddingLeft: `${(line.indent || 0) * 1.5}rem` }}
+          >
+            {renderLineTokens(line.text)}
           </div>
         ))}
       </div>
@@ -35,20 +51,27 @@ export function CodeBlock({ data, editMode, onUpdate }: Props) {
       const trimmed = l.trimStart();
       const indent = Math.floor((l.length - trimmed.length) / 2);
       let type: CodeLine['type'] = 'normal';
-      if (/^(function|if|else|for|while|return|const|let|var|class|import|export|def|print|pass|break|continue)\b/.test(trimmed)) type = 'keyword';
+      if (/^(function|if|else|for|while|return|const|let|var|class|import|export|def|print|pass|break|continue|in|range|max|min|sum|del)\b/.test(trimmed)) type = 'keyword';
       else if (trimmed.startsWith('//') || trimmed.startsWith('#') || trimmed.startsWith('--')) type = 'comment';
+      else if (trimmed.includes('(') && trimmed.substring(0, trimmed.indexOf('(')).match(/^[a-zA-Z0-9_]+$/)) type = 'fn';
+      else if (trimmed.match(/^[a-zA-Z0-9_]+\s*=/)) type = 'var';
       return { text: trimmed, indent, type };
     });
     setD({ ...d, lines });
   };
 
   return (
-    <div className="card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-      <input value={d.title || ''} onChange={(e) => setD({ ...d, title: e.target.value })} placeholder="Code block title (optional)" style={{ width: '100%' }} />
+    <div className="card code-edit-card">
+      <input 
+        value={d.title || ''} 
+        onChange={(e) => setD({ ...d, title: e.target.value })} 
+        placeholder="Code block title (optional)" 
+        className="code-edit-input" 
+      />
       <textarea
         value={rawText}
         onChange={(e) => handleRawChange(e.target.value)}
-        style={{ width: '100%', minHeight: '160px', fontFamily: 'var(--mono)', fontSize: '0.82rem' }}
+        className="code-edit-textarea"
       />
       <button className="btn btn-primary" onClick={() => onUpdate(d)}>Save</button>
     </div>

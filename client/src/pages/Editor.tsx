@@ -7,6 +7,7 @@ import { PageList } from '../components/Sidebar/PageList';
 import { PageRenderer } from '../components/Renderer/PageRenderer';
 import { AddBlockPanel } from '../components/Editor/AddBlockPanel';
 import { ExtendPanel } from '../components/Editor/ExtendPanel';
+import './Editor.css';
 
 export default function Editor() {
   const { pageId } = useParams<{ pageId: string }>();
@@ -32,32 +33,32 @@ export default function Editor() {
 
   if (loading) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--text-dim)' }}>Loading page...</div>
+      <div className="editor-loading-container">
+        <div className="editor-loading-text">Loading page...</div>
       </div>
     );
   }
 
   if (!activePage) {
     return (
-      <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <div style={{ fontFamily: 'var(--mono)', fontSize: '0.8rem', color: 'var(--accent2)' }}>Page not found</div>
+      <div className="editor-loading-container">
+        <div className="editor-error-text">Page not found</div>
       </div>
     );
   }
 
   return (
-    <div style={{ height: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <div className="editor-layout">
       <Toolbar
         onToggleAddBlock={() => { setShowAddBlock((v) => !v); setShowExtend(false); }}
         onToggleExtend={() => { setShowExtend((v) => !v); setShowAddBlock(false); }}
         showSidebar={showSidebar}
         onToggleSidebar={() => setShowSidebar((v) => !v)}
       />
-      <div style={{ flex: 1, display: 'flex', overflow: 'hidden' }}>
+      <div className="editor-content-area">
         {showSidebar && <PageList />}
-        <main style={{ flex: 1, overflowY: 'auto', padding: '2rem' }}>
-          <div style={{ maxWidth: '860px', margin: '0 auto' }}>
+        <main className="editor-main">
+          <div className="editor-canvas-max-width">
             <PageRenderer />
           </div>
         </main>

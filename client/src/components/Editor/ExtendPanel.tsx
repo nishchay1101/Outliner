@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { usePageStore } from '../../store/pageStore';
 import { extendWithAI, updatePage } from '../../api/client';
 import { v4 as uuidv4 } from 'uuid';
+import './ExtendPanel.css';
 
 interface Props { onClose: () => void; }
 
@@ -44,30 +45,29 @@ export function ExtendPanel({ onClose }: Props) {
   };
 
   return (
-    <div style={{ width: '300px', minWidth: '300px', borderLeft: '1px solid var(--border)', background: 'var(--surface)', display: 'flex', flexDirection: 'column', height: '100%' }}>
-      <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--accent3)', textTransform: 'uppercase' }}>Extend with AI</span>
-        <button className="btn btn-ghost" style={{ padding: '0.2rem 0.45rem', fontSize: '0.7rem' }} onClick={onClose}>✕</button>
+    <div className="extend-panel">
+      <div className="extend-header">
+        <span className="extend-title">Extend with AI</span>
+        <button className="btn btn-ghost extend-close-btn" onClick={onClose}>✕</button>
       </div>
-      <div style={{ padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem', flex: 1 }}>
-        <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)', lineHeight: 1.6 }}>
+      <div className="extend-body">
+        <p className="extend-desc">
           Describe what you want to add. Claude will generate a new block that fits your content.
         </p>
         <textarea
           value={prompt}
           onChange={(e) => setPrompt(e.target.value)}
           placeholder="e.g. Add a tip about time complexity analysis&#10;Add a table comparing sorting algorithms&#10;Create a checklist of key takeaways"
-          style={{ width: '100%', minHeight: '140px', resize: 'vertical' }}
+          className="extend-textarea"
           disabled={loading}
         />
-        <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text-dim)', padding: '0.5rem', background: 'rgba(92,244,180,0.05)', border: '1px solid rgba(92,244,180,0.1)', borderRadius: '2px' }}>
+        <div className="extend-context-info">
           Context: last {Math.min(3, activePage?.blocks.length || 0)} blocks will be sent as context
         </div>
         <button
-          className="btn btn-primary"
+          className="btn btn-primary extend-submit-btn"
           onClick={handleExtend}
           disabled={loading || !prompt.trim()}
-          style={{ width: '100%', opacity: loading || !prompt.trim() ? 0.6 : 1 }}
         >
           {loading ? 'Generating...' : 'Generate with Claude →'}
         </button>

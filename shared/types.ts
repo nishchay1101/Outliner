@@ -8,7 +8,22 @@ export type BlockType =
   | 'checklist'
   | 'exercise'
   | 'timeline'
-  | 'divider';
+  | 'divider'
+  | 'template'
+  | 'rawHtml';
+
+export interface RawHtmlData {
+  html: string;
+}
+
+export interface TemplateData {
+  title: string;
+  codeTitle: string;
+  lines: CodeLine[];
+  descriptionTitle: string;
+  descriptionItems: string[];
+  note?: string;
+}
 
 export interface HeroData {
   title: string;
@@ -59,7 +74,7 @@ export interface TableData {
 export interface CodeLine {
   text: string;
   indent: number;
-  type: 'keyword' | 'var' | 'comment' | 'normal';
+  type: 'keyword' | 'var' | 'comment' | 'normal' | 'fn';
 }
 
 export interface CodeData {
@@ -107,7 +122,8 @@ export type BlockData =
   | ChecklistData
   | ExerciseData
   | TimelineData
-  | DividerData;
+  | DividerData
+  | RawHtmlData;
 
 export interface Block {
   id: string;

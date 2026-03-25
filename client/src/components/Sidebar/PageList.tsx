@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { usePageStore } from '../../store/pageStore';
 import { getPages, deletePage } from '../../api/client';
 import { PageSummary } from '../../../../shared/types';
+import './PageList.css';
 
 export function PageList() {
   const navigate = useNavigate();
@@ -30,29 +31,18 @@ export function PageList() {
     }
   };
 
-  const sidebarStyle: React.CSSProperties = {
-    width: '240px',
-    minWidth: '240px',
-    borderRight: '1px solid var(--border)',
-    display: 'flex',
-    flexDirection: 'column',
-    height: '100%',
-    overflowY: 'auto',
-    background: 'var(--surface)',
-  };
-
   return (
-    <div style={sidebarStyle}>
-      <div style={{ padding: '1rem', borderBottom: '1px solid var(--border)', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-        <span style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
+    <div className="page-list-sidebar">
+      <div className="page-list-header">
+        <span className="page-list-count-label">
           Pages ({pages.length})
         </span>
         <button className="btn btn-primary" onClick={() => navigate('/')}>+ New</button>
       </div>
 
-      <div style={{ flex: 1 }}>
+      <div className="page-list-body">
         {pages.length === 0 && (
-          <p style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)', padding: '1rem', textAlign: 'center' }}>
+          <p className="page-list-empty-msg">
             No pages yet
           </p>
         )}
@@ -60,35 +50,23 @@ export function PageList() {
           <div
             key={p.id}
             onClick={() => navigate(`/editor/${p.id}`)}
-            style={{
-              padding: '0.75rem 1rem',
-              borderBottom: '1px solid var(--border)',
-              cursor: 'pointer',
-              background: p.id === pageId ? 'rgba(244,197,66,0.06)' : 'transparent',
-              borderLeft: p.id === pageId ? '2px solid var(--accent)' : '2px solid transparent',
-              transition: 'all 0.15s ease',
-              display: 'flex',
-              justifyContent: 'space-between',
-              alignItems: 'flex-start',
-              gap: '0.5rem',
-            }}
+            className={`page-list-item ${p.id === pageId ? 'selected' : ''}`}
           >
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontFamily: 'var(--sans)', fontWeight: 600, fontSize: '0.85rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <div className="page-list-item-content">
+              <div className="page-list-item-title">
                 {p.title}
               </div>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: '0.65rem', color: 'var(--text-dim)', marginTop: '0.2rem' }}>
+              <div className="page-list-item-date">
                 {new Date(p.updatedAt).toLocaleDateString()}
               </div>
               {p.sourceFilename && (
-                <div style={{ fontFamily: 'var(--mono)', fontSize: '0.6rem', color: 'var(--muted)', marginTop: '0.1rem', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                <div className="page-list-item-source">
                   {p.sourceFilename}
                 </div>
               )}
             </div>
             <button
-              className="btn btn-danger"
-              style={{ padding: '0.15rem 0.4rem', fontSize: '0.65rem', flexShrink: 0 }}
+              className="btn btn-danger page-list-delete-btn"
               onClick={(e) => handleDelete(e, p.id)}
             >
               ✕

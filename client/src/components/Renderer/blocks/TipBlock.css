@@ -1,0 +1,29 @@
+.tip-card {
+  padding: 1.25rem;
+  border-left: 3px solid var(--tip-border-color);
+}
+
+.tip-label {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--tip-border-color);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.tip-content {
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.tip-edit-card {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.tip-edit-input {
+  width: 100%;
+}

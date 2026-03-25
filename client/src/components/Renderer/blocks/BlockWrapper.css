@@ -1,0 +1,36 @@
+.block-wrapper-main {
+  position: relative;
+  margin-bottom: 1.25rem;
+  border-radius: 4px;
+  transition: outline 0.15s ease;
+  outline: 1px dashed transparent;
+}
+
+.block-wrapper-main.editing {
+  outline: 1px solid var(--accent);
+}
+
+.block-wrapper-main.edit-mode:not(.editing):hover {
+  outline: 1px dashed var(--border);
+}
+
+.block-wrapper-controls {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  display: flex;
+  gap: 0.35rem;
+  opacity: 0;
+  transition: opacity 0.15s;
+  pointer-events: none;
+}
+
+.block-wrapper-main:hover .block-wrapper-controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.block-wrapper-btn {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.65rem;
+}

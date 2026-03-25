@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { HeroData } from '../../../../../shared/types';
+import './HeroBlock.css';
 
 interface Props {
   data: HeroData;
@@ -14,14 +15,14 @@ export function HeroBlock({ data, editMode, onUpdate }: Props) {
 
   if (!editMode) {
     return (
-      <div className="header" style={{ marginBottom: 0, paddingBottom: 0, borderBottom: 'none' }}>
-        <h1 style={{ marginBottom: '0.75rem' }}>
+      <div className="header hero-header-no-border">
+        <h1 className="hero-title-margin">
           {data.title}
         </h1>
-        {data.subtitle && <p style={{ color: 'var(--text-dim)', fontSize: '1rem', marginBottom: '1.25rem', lineHeight: 1.6 }}>{data.subtitle}</p>}
+        {data.subtitle && <p className="hero-subtitle">{data.subtitle}</p>}
         
         {data.badges?.length > 0 && (
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '1rem' }}>
+          <div className="hero-badges-container">
             {data.badges.map((b, i) => (
               <div key={i} className="lecture-badge">
                 <span className="dot"></span> {b}
@@ -31,7 +32,7 @@ export function HeroBlock({ data, editMode, onUpdate }: Props) {
         )}
         
         {data.metaChips?.length > 0 && (
-          <div className="header-meta" style={{ marginTop: '0.5rem' }}>
+          <div className="header-meta hero-meta-margin">
             {data.metaChips.map((c, i) => (
               <div key={i} className="meta-chip">
                 {c.label}: <strong>{c.value}</strong>
@@ -44,13 +45,25 @@ export function HeroBlock({ data, editMode, onUpdate }: Props) {
   }
 
   return (
-    <div className="card" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-      <label style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)' }}>Title</label>
-      <input value={d.title} onChange={(e) => setD({ ...d, title: e.target.value })} style={{ width: '100%' }} />
-      <label style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)' }}>Subtitle</label>
-      <input value={d.subtitle} onChange={(e) => setD({ ...d, subtitle: e.target.value })} style={{ width: '100%' }} />
-      <label style={{ fontFamily: 'var(--mono)', fontSize: '0.7rem', color: 'var(--text-dim)' }}>Badges (comma-separated)</label>
-      <input value={d.badges?.join(', ') || ''} onChange={(e) => setD({ ...d, badges: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} style={{ width: '100%' }} />
+    <div className="card hero-edit-card">
+      <label className="hero-edit-label">Title</label>
+      <input 
+        value={d.title} 
+        onChange={(e) => setD({ ...d, title: e.target.value })} 
+        className="hero-edit-input" 
+      />
+      <label className="hero-edit-label">Subtitle</label>
+      <input 
+        value={d.subtitle} 
+        onChange={(e) => setD({ ...d, subtitle: e.target.value })} 
+        className="hero-edit-input" 
+      />
+      <label className="hero-edit-label">Badges (comma-separated)</label>
+      <input 
+        value={d.badges?.join(', ') || ''} 
+        onChange={(e) => setD({ ...d, badges: e.target.value.split(',').map(s => s.trim()).filter(Boolean) })} 
+        className="hero-edit-input" 
+      />
       <button className="btn btn-primary" onClick={handleSave}>Save</button>
     </div>
   );
