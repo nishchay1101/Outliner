@@ -859,3 +859,129 @@
   height: 1px;
   background: rgba(var(--accent4-rgb), 0.2);
 }
+
+/* ── POINTER VISUAL (array cell diagrams) ── */
+.lecture-canvas .pointer-visual {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--card-border);
+  border-radius: 4px;
+  padding: 14px;
+  font-family: var(--mono);
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.lecture-canvas .arr-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-bottom: 6px;
+  flex-wrap: wrap;
+}
+
+.lecture-canvas .arr-label {
+  font-size: 10px;
+  color: var(--muted);
+  letter-spacing: 0.08em;
+  margin-right: 4px;
+}
+
+.lecture-canvas .arr-cell {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--card-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 3px;
+  color: var(--text-dim);
+  flex-shrink: 0;
+  font-family: var(--mono);
+}
+
+/* arr-cell variants */
+.lecture-canvas .arr-cell.zero {
+  background: rgba(224, 92, 92, 0.12);
+  border-color: rgba(224, 92, 92, 0.3);
+  color: var(--danger, #e05c5c);
+}
+.lecture-canvas .arr-cell.slow {
+  background: rgba(244, 197, 66, 0.12);
+  border-color: rgba(244, 197, 66, 0.4);
+  color: var(--warn, #f4c542);
+}
+.lecture-canvas .arr-cell.fast {
+  background: rgba(92, 244, 180, 0.12);
+  border-color: rgba(92, 244, 180, 0.4);
+  color: var(--accent3);
+}
+.lecture-canvas .arr-cell.both {
+  background: rgba(150, 120, 244, 0.15);
+  border-color: rgba(150, 120, 244, 0.4);
+  color: #b4a0ff;
+}
+
+/* ── POINTER LEGEND ── */
+.lecture-canvas .ptr-legend {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.lecture-canvas .ptr-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--text-dim);
+  font-family: var(--mono);
+}
+
+.lecture-canvas .ptr-dot {
+  display: inline-block;
+  width: 8px;
+  min-width: 8px;
+  height: 8px;
+  min-height: 8px;
+  border-radius: 1px;
+  flex-shrink: 0;
+}
+
+/* ── ALGO BOX INDENT HELPERS ── */
+.lecture-canvas .algo-box .indent,
+.lecture-canvas .algo-box .i1 {
+  padding-left: 20px;
+  display: block;
+}
+
+.lecture-canvas .algo-box .indent2,
+.lecture-canvas .algo-box .i2 {
+  padding-left: 40px;
+  display: block;
+}
+
+.lecture-canvas .algo-box .ln {
+  display: block;
+}
+
+/* ── PC-BODY-WIDE (full-width problem body with cols) ── */
+.lecture-canvas .pc-body-wide {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.lecture-canvas .pc-body-wide .cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 700px) {
+  .lecture-canvas .pc-body-wide .cols {
+    grid-template-columns: 1fr;
+  }
+}
